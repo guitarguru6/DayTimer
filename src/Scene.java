@@ -120,12 +120,10 @@ public class Scene extends GameObject {
 					Timer t = new Timer(s2[0], (double) (Double.valueOf(s2[1].trim())));
 					this.addObject(t);
 					Timer.count++;
-					// System.out.println(s2[0] + ":" +s2[1]);
 				}
 			}
 			fr.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -133,7 +131,6 @@ public class Scene extends GameObject {
 	public void dump() {
 		try {
 			PrintWriter out = new PrintWriter("res//log.dat", "UTF-8");
-			// out.println("");
 			for (GameObject o : objects) {
 				if (!o.toString().equals("")) {
 					out.println(o.toString());
@@ -142,7 +139,6 @@ public class Scene extends GameObject {
 			}
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

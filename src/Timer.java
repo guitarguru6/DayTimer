@@ -43,41 +43,34 @@ public class Timer extends GameObject {
 		r2.width = 40;
 		delete = new Button(r, "X", Color.RED) {
 			public void onClick() {
-				// activate();
 				delete();
 			};
 
 		};
 		delete.font = new Font("Arial", 1, 30);
 	}
-	
+
 	public boolean isTimer() {
 		return true;
 	}
+
 	public void resetLocation(int i) {
 		r = new Rectangle(20, i * 50 + 20, 200, 40);
-//		button.r = r;
 		button.y = r.y;
 		button.x = r.x;
 		Rectangle r2 = r;
 		r2.x += r.width + 5;
 		r2.width = 40;
-//		delete.r = r2;
-		//button.resetSize();
 
 		delete.y = r2.y;
 
 		delete.x = r2.x;
-		//delete.resetSize();
 	}
+
 	public void setLocation(int i) {
 		r = new Rectangle(20, i * 50 + 20, 200, 40);
 	}
 
-	// public void setLocation(int x, int y) {
-	// r.x = x;
-	// r.y = y;
-	// }
 	public boolean containsCursor() {
 		return button.containsCursor() || delete.containsCursor();
 	}
@@ -101,11 +94,10 @@ public class Timer extends GameObject {
 	}
 
 	public String getTime() {
-		// BigInteger b = new BigInteger((long) (time*10));
 		double d = (time / 1000.0);
 		if (d < 60) {
-			return "" + ((time / 1000.0));// - time%1000);
-		} else {//if (d < 3600) {
+			return "" + ((time / 1000.0));
+		} else if (d < 3600) {
 			int a = (int) ((time / 1000.0) / 60);
 			String s = "" + a + ":";
 			int s2 = (int) (((time / 1000.0) - (a * 60)));
@@ -113,17 +105,21 @@ public class Timer extends GameObject {
 				s += "0";
 			}
 			return s + s2;
-		} 
-		//else if {
-//			int a = (int) ((time / 1000.0) / 60);
-//			String s = "" + a + ":";
-//			int s2 = (int) (((time / 1000.0) - (a * 60)));
-//			if (s2 < 10) {
-//				s += "0";
-//			}
-//			return s + s2;
-		//}
-		//return "";
+		} else {
+			int a = (int) ((time / 1000.0) / 3600);
+			int b = (int) ((time / 1000.0) / 60) - (a * 60);
+			String s = "" + a + ":";
+			if (b < 10) {
+				s += "0";
+			}
+			s += b + ":";
+			int c = (int) (((time / 1000.0) - (b * 60) - (a * 3600)));
+			if (c < 10) {
+				s += "0";
+			}
+			s += c;
+			return s;
+		}
 	}
 
 	public void tick(int l) {
@@ -131,7 +127,6 @@ public class Timer extends GameObject {
 			time += l;
 			button.setText(name + ": " + getTime());
 		}
-		// System.out.println("heyo");
 	}
 
 	public void tick() {
@@ -146,7 +141,6 @@ public class Timer extends GameObject {
 			button.setText(" " + name + ": " + getTime());
 			button.render(g);
 			delete.render(g);
-			// System.out.println(name);
 		}
 	}
 

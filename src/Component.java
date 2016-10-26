@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-
 public class Component extends Applet implements Runnable {
 	private static final long serialVersionUID = 1L;
 
@@ -34,11 +33,10 @@ public class Component extends Applet implements Runnable {
 
 	public static void main(String[] args) {
 		Component component = new Component();
-		
+
 		w.add(component);
-		//w.undecorate();
 		component.init();
-		
+
 	}
 
 	public void init() {
@@ -53,9 +51,7 @@ public class Component extends Applet implements Runnable {
 		scene = new Scene("Scene", Color.lightGray);
 		scene.addObject(new Button(Window.width - 220, Window.height - 60, 100, 50, "New") {
 			public void onClick() {
-				// System.out.println("Heyo");
 				createFrame();
-				// System.exit(0);
 			}
 
 			public void createFrame() {
@@ -78,7 +74,7 @@ public class Component extends Applet implements Runnable {
 						JLabel label = new JLabel("Timer name:");
 						JTextField input = new JTextField(20);
 						JButton button = new JButton("Enter");
-						
+
 						inputpanel.add(label);
 						inputpanel.add(input);
 						inputpanel.add(button);
@@ -89,19 +85,15 @@ public class Component extends Applet implements Runnable {
 								String s = input.getText();
 								scene.addObject(new Timer(s));
 								Timer.count++;
-								//System.out.println(s);
 								frame.dispose();
 							}
 
 						});
 						frame.getContentPane().add(BorderLayout.CENTER, panel);
-						//frame.setUndecorated(true);
-						//frame.setShape(new Rectangle(0, 26, 400, 40));
 						frame.pack();
-						frame.setLocationRelativeTo(null);// ;(true);
+						frame.setLocationRelativeTo(null);
 						frame.setVisible(true);
 						frame.setResizable(false);
-						//frame.setUndecorated(false);
 
 						input.requestFocus();
 					}
@@ -114,8 +106,6 @@ public class Component extends Applet implements Runnable {
 				System.exit(0);
 			}
 		});
-//		scene.addObject(new Timer("Timer", 0));
-//		Timer.count++;
 	}
 
 	public static void resized() {
@@ -142,18 +132,13 @@ public class Component extends Applet implements Runnable {
 
 	public void tick() {
 		int time = (int) ((System.currentTimeMillis() - start));
-//		if(time > 1000) {
-			start = System.currentTimeMillis();
-//			scene.tick();
-//		}
+		start = System.currentTimeMillis();
 		try {
-//			System.out.println(time);
 			scene.tick(time);
 		} catch (Exception e) {
 
 		}
 
-		// w.tick();
 	}
 
 	public void render(Graphics g) {
@@ -163,7 +148,6 @@ public class Component extends Applet implements Runnable {
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, Window.width, Window.height);
 		try {
-//			System.out.println(time);
 			scene.render(g);
 		} catch (Exception e) {
 
