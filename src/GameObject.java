@@ -30,7 +30,7 @@ public abstract class GameObject implements Drawable {
 
 	}
 
-	public void onClick() {
+	public void onClick(int button) {
 
 	}
 

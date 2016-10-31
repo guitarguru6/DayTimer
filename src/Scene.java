@@ -101,10 +101,10 @@ public class Scene extends GameObject {
 		drawObjects(g);
 	}
 
-	public void onClick() {
+	public void onClick(int a) {
 		for (GameObject o : objects) {
 			if (o.containsCursor()) {
-				o.onClick();
+				o.onClick(a);
 			}
 		}
 
@@ -134,7 +134,7 @@ public class Scene extends GameObject {
 			for (GameObject o : objects) {
 				if (!o.toString().equals("")) {
 					out.println(o.toString());
-					System.out.println("written");
+					// System.out.println("written");
 				}
 			}
 			out.close();

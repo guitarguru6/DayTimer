@@ -66,7 +66,7 @@ public abstract class Button extends GameObject implements Drawable {
 		return r2.contains(Listening.mx, Listening.my);
 	}
 
-	public abstract void onClick();
+	public abstract void onClick(int a);
 
 	public boolean isButton() {
 		return true;

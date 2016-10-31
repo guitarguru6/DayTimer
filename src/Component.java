@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,8 +34,8 @@ public class Component extends Applet implements Runnable {
 		Component component = new Component();
 
 		w.add(component);
-		component.init();
 
+		component.init();
 	}
 
 	public void init() {
@@ -50,7 +49,7 @@ public class Component extends Applet implements Runnable {
 
 		scene = new Scene("Scene", Color.lightGray);
 		scene.addObject(new Button(Window.width - 220, Window.height - 60, 100, 50, "New") {
-			public void onClick() {
+			public void onClick(int a) {
 				createFrame();
 			}
 
@@ -83,6 +82,8 @@ public class Component extends Applet implements Runnable {
 
 							public void actionPerformed(ActionEvent e) {
 								String s = input.getText();
+								if (s.length() > 15)
+									s = s.substring(0, 15);
 								scene.addObject(new Timer(s));
 								Timer.count++;
 								frame.dispose();
@@ -101,15 +102,16 @@ public class Component extends Applet implements Runnable {
 			}
 		});
 		scene.addObject(new Button(Window.width - 110, Window.height - 60, 100, 50, "Exit") {
-			public void onClick() {
+			public void onClick(int a) {
 				scene.dump();
 				System.exit(0);
 			}
 		});
-	}
-
-	public static void resized() {
-
+		TextBox t = new TextBox(500, 80, 275, 75);
+		t.addLine("Left click on a timer to start/stop it");
+		t.addLine("Right click on a timer to reset it");
+		t.addLine("Click the \"X\" next to a timer to delete it");
+		scene.addObject(t);
 	}
 
 	public void run() {
@@ -124,8 +126,8 @@ public class Component extends Applet implements Runnable {
 		}
 	}
 
-	public static void onClick() {
-		scene.onClick();
+	public static void onClick(int a) {
+		scene.onClick(a);
 	}
 
 	double start = System.currentTimeMillis();
@@ -138,7 +140,6 @@ public class Component extends Applet implements Runnable {
 		} catch (Exception e) {
 
 		}
-
 	}
 
 	public void render(Graphics g) {
@@ -150,7 +151,6 @@ public class Component extends Applet implements Runnable {
 		try {
 			scene.render(g);
 		} catch (Exception e) {
-
 		}
 		g = this.getGraphics();
 		g.drawImage(screen, 0, 0, null);

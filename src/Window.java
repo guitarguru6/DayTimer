@@ -35,50 +35,38 @@ public class Window extends JFrame implements WindowListener {
 	}
 
 	public void tick() {
-		boolean b = false;
 		if (width != getWidth() - 6) {
 			width = getWidth() - 6;
-			b = true;
 		}
 		if (height != getHeight() - 29) {
 			height = getHeight() - 29;
-			b = true;
 		}
-		if (b)
-			Component.resized();
 	}
 
-	@Override
 	public void windowActivated(WindowEvent e) {
 
 	}
 
-	@Override
 	public void windowClosed(WindowEvent e) {
 
 	}
 
 	public void windowClosing(WindowEvent e) {
 		Component.scene.dump();
-		System.out.println("closing");
 	}
 
-	@Override
 	public void windowDeactivated(WindowEvent e) {
 
 	}
 
-	@Override
 	public void windowDeiconified(WindowEvent e) {
 
 	}
 
-	@Override
 	public void windowIconified(WindowEvent e) {
 
 	}
 
-	@Override
 	public void windowOpened(WindowEvent e) {
 
 	}

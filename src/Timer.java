@@ -27,27 +27,36 @@ public class Timer extends GameObject {
 		time = l;
 		setLocation(count);
 		button = new Button(r, name, Color.RED) {
-			public void onClick() {
-				activate();
-				if (active) {
-					button.setColor(Color.GREEN);
-				} else {
-					button.setColor(Color.RED);
+			public void onClick(int a) {
+				if (a == 1) {
+					activate();
+					if (active) {
+						button.setColor(Color.GREEN);
+					} else {
+						button.setColor(Color.RED);
+					}
+				} else if (a == 3) {
+					clear();
 				}
 			}
 
 		};
 		button.setAlignment('l');
+		button.font = new Font("Arial", 1, 15);
 		Rectangle r2 = r;
 		r2.x += r.width + 5;
 		r2.width = 40;
 		delete = new Button(r, "X", Color.RED) {
-			public void onClick() {
+			public void onClick(int a) {
 				delete();
 			};
 
 		};
 		delete.font = new Font("Arial", 1, 30);
+	}
+
+	public void clear() {
+		time = 0;
 	}
 
 	public boolean isTimer() {
@@ -75,12 +84,12 @@ public class Timer extends GameObject {
 		return button.containsCursor() || delete.containsCursor();
 	}
 
-	public void onClick() {
+	public void onClick(int a) {
 		if (button.containsCursor()) {
-			button.onClick();
+			button.onClick(a);
 		}
 		if (delete.containsCursor()) {
-			delete.onClick();
+			delete.onClick(a);
 		}
 
 	}

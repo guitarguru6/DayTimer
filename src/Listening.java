@@ -38,7 +38,15 @@ public class Listening implements MouseListener, MouseMotionListener, MouseWheel
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		Component.onClick();
+		int button = 0;
+		if (e.getButton() == MouseEvent.BUTTON1)
+			button = 1;
+		else if (e.getButton() == MouseEvent.BUTTON2)
+			button = 2;
+		else if (e.getButton() == MouseEvent.BUTTON3)
+			button = 3;
+
+		Component.onClick(button);
 	}
 
 	public void mouseEntered(MouseEvent e) {
